@@ -1,0 +1,12 @@
+{
+  "name": "demo-ui",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "kafkajs": "^2.2.4"
+  }
+}

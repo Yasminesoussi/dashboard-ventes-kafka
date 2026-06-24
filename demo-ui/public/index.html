@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ventes Kafka</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <header>
+        <h1>Ventes Kafka</h1>
+        <p class="sub">
+          Topic: <code>ventes</code> → Streams → <code>ventes_total</code>
+        </p>
+        <div class="toolbar">
+          <button type="button" class="btn" id="btn-refresh">Rafraîchir</button>
+          <span class="status" id="sse-status">Connexion…</span>
+        </div>
+      </header>
+
+
+
+      <div class="cards">
+        <section class="card">
+          <h2>Simuler une vente</h2>
+          <p class="hint">
+            Envoie sur le topic <code>ventes</code> — l’app Streams agrège vers
+            <code>ventes_total</code>.
+          </p>
+          <form id="vente-form">
+            <div class="form-row">
+              <div>
+                <label for="produit">Produit</label>
+                <input
+                  type="text"
+                  id="produit"
+                  name="produit"
+                  value="Ordinateur"
+                  required
+                />
+              </div>
+              <div>
+                <label for="quantite">Quantité</label>
+                <input
+                  type="number"
+                  id="quantite"
+                  name="quantite"
+                  value="1"
+                  min="1"
+                  step="1"
+                  required
+                />
+              </div>
+              <div>
+                <label for="prix">Prix unitaire (€)</label>
+                <input
+                  type="number"
+                  id="prix"
+                  name="prix"
+                  value="100"
+                  min="0"
+                  step="0.01"
+                  required
+                />
+              </div>
+            </div>
+            <button type="submit" class="btn">Envoyer la vente</button>
+            <p id="form-feedback" aria-live="polite"></p>
+          </form>
+        </section>
+
+        <section class="card">
+          <h2>Totaux agrégés</h2>
+          <p class="hint">
+            Tableau : dernier total par produit (topic <code>ventes_total</code>).
+            En dessous : historique de tous les messages du même topic.
+          </p>
+          <table>
+            <thead>
+              <tr>
+                <th>Produit</th>
+                <th>Total (€)</th>
+              </tr>
+            </thead>
+            <tbody id="totals-body">
+              <tr>
+                <td colspan="2" class="empty">Chargement…</td>
+              </tr>
+            </tbody>
+          </table>
+          <h3 class="sub-block">Historique ventes_total</h3>
+          <p class="hint hint-tight">
+            Tous les messages du topic (relecture complète au démarrage du serveur,
+            puis direct).
+          </p>
+          <ul class="feed feed-compact" id="totaux-feed">
+            <li class="empty-placeholder empty">Chargement…</li>
+          </ul>
+        </section>
+
+        <section class="card">
+          <h2>Ventes récentes (flux)</h2>
+          <p class="hint">
+            Tous les messages du topic <code>ventes</code> (historique relu au
+            démarrage du serveur, puis mises à jour en direct).
+          </p>
+          <ul class="feed" id="feed">
+            <li class="empty-placeholder empty">
+              Aucun message encore — utilisez le formulaire « Simuler une vente
+              ».
+            </li>
+          </ul>
+        </section>
+      </div>
+    </div>
+    <script src="/app.js"></script>
+  </body>
+</html>
