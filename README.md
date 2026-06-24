@@ -176,57 +176,8 @@ Exemple :
 }
 ```
 
-### Recuperer l'etat courant
 
-```http
-GET /api/snapshot
-```
 
-### Flux temps reel
+### Auteur
 
-```http
-GET /api/stream
-```
-
-Le flux utilise Server-Sent Events pour mettre l'interface a jour automatiquement.
-
-## Variables d'environnement
-
-| Variable | Description | Valeur par defaut |
-| --- | --- | --- |
-| `PORT` | Port du serveur web | `3000` |
-| `KAFKA_BROKERS` | Liste des brokers Kafka | `localhost:9092` |
-| `VENTES_FEED_MAX` | Nombre maximum de ventes gardees en memoire | `50000` |
-| `VENTES_TOTAL_FEED_MAX` | Nombre maximum de totaux gardes en memoire | `50000` |
-| `NO_OPEN` | Mettre `1` pour ne pas ouvrir le navigateur automatiquement | non defini |
-
-Exemple :
-
-```bash
-NO_OPEN=1 PORT=4000 npm start
-```
-
-## Conseils avant de pousser sur Git
-
-Il est recommande de ne pas versionner :
-
-- `node_modules/`
-- `target/`
-- les logs Kafka
-- les donnees Kafka locales dans `kraft-logs/`
-- la distribution complete Kafka si elle peut etre telechargee separement
-
-Un repository plus propre contient surtout :
-
-- le code Java dans `kafka-streams-app/`
-- le code Node.js et frontend dans `demo-ui/`
-- le `README.md`
-- un `.gitignore`
-
-## Nom de repository propose
-
-`kafka-sales-stream-dashboard`
-
-## Description courte
-
-Dashboard temps reel de ventes avec Apache Kafka, Kafka Streams, Node.js et une interface web.
+Projet réalisé par Yasmine Soussi.
