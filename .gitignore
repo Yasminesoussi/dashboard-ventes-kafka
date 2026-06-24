@@ -1,0 +1,7 @@
+node_modules/
+.env
+target/
+.vscode/
+
+kafka_2.13-4.2.0/logs/
+kafka_2.13-4.2.0/kraft-logs/
